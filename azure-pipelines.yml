@@ -20,11 +20,15 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
+- script: |
+    echo "Listing files in app/build/outputs/apk/debug:"
+    ls -la app/build/outputs/apk/debug
+  displayName: 'List APK files'
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: $(Build.SourcesDirectory)
-    Contents: '**/.apk'
+    sourceFolder: $(Build.SourcesDirectory)/app/build/outputs/apk/debug
+    contents: '**/*.apk'
     targetFolder: $(Build.ArtifactStagingDirectory)
 
 - task: PublishBuildArtifacts@1
