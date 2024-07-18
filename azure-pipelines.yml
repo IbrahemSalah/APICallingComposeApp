@@ -21,6 +21,12 @@ steps:
     tasks: 'assembleDebug'
 
 
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: $(Build.SourcesDirectory)
+    Contents: '**/.apk'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
